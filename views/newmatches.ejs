@@ -1,0 +1,17 @@
+<% include partials/header %>
+<h2> LIST OF MATCHES</h2>
+<div class="container">
+<div  class="row ">
+ 
+ <% matches.forEach(function(match){ %>
+       <div style="border: 3px solid black" class="col-md-3 jumbotron">       
+        <h4><li> <%= match["team-1"] %></li></h1>
+        <h4><li><%= match["team-2"] %>  </li></h1>
+        <li><%= match["date"].substring(0,10) %>  </li>
+        <a href="/nmatches/score/<%= match["unique_id"] %>" class="btn btn-primary btn-xs  " >Know more</a>
+      </div> 
+    <%     }) %>
+     
+   </div>
+    </div>
+    

@@ -1,0 +1,52 @@
+<% include partials/header %>
+<h1> MATCH BETWEEN <%= score["team-1"].toUpperCase() %> AND <%= score["team-2"].toUpperCase() %> :   </h1>
+
+<% if(score["matchStarted"]){ %>
+   <div class="container">
+   <div class="jumbotron">
+   <h3><%=score["innings-requirement"] %></h3>
+   <h3><%=score["score"] %></h3>
+   <h3> It is a <%=score["type"]  %> match</h3>
+   <h3> <%=score["dateTimeGMT"]  %>  match</h3>
+   </div>
+   </div>
+
+
+
+
+<% } else{ %>
+<div class="jumbotron">
+<h3> MATCH YET NOT STARTED</h3>
+<h3> It is a <%=score["type"]  %> match</h3>
+   <h3> @ <%=score["dateTimeGMT"]  %> GMT</h3>
+</div>
+<% } %>
+<div class="container">
+<form action="/comment/<%= match["match_id"] %>" method="POST" >
+    <label >Name:</label>
+    <br>
+    <input id="abc" type="text" name="name" placeholder="NAME">
+    <br>
+    <label>Comment:</label>
+    <br>
+    <textarea type="text" name="body" placeholder="COMMENT"></textarea>
+<br>    
+        <button class="btn btn-primary">SUBMIT</button>
+    
+</form>
+</div>
+<br>
+<br>
+<div class="container">
+<div  class="row ">
+<div style="border: 3px solid black" class="col-md-3 jumbotron">      
+<% match.comment.forEach(function(cmnt){ %>
+ 
+<li> <strong><%=cmnt.name%></strong> <br> <%= cmnt.body %> </li>
+<a  href="delete/<%= match["match_id"] %>/<%= cmnt._id %>">Delete</a>
+
+
+<% }); %>
+</div> 
+</div>
+</div>
